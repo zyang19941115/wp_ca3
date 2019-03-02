@@ -25,7 +25,7 @@
                     <b>Quantity:</b>
                     <input id="quantity" type="text" name="quantity" value="1" size="2">
                     <br><br>
-                    <input type="submit" value="Add to Cart">
+                    <input type="submit" value="Buy It">
                 </form>
             </div>
         </section>

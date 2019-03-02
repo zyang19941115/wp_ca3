@@ -10,13 +10,13 @@ function get_categories() {
     return $statement;
 }
 
-function get_latest_category_id() {
+function get_latest_category() {
     global $db;
-    $query = "SELECT category_id FROM categories where is_deleted = 0 ORDER BY category_id DESC LIMIT 1";
+    $query = "SELECT * FROM categories where is_deleted = 0 ORDER BY categoryID DESC LIMIT 1";
     $statement = $db->prepare($query);
     $statement->execute();
-    $category_id = $statement->fetch();
-    return $category_id;
+    $category = $statement->fetch();
+    return $category;
 }
 
 function get_category_name($category_id) {

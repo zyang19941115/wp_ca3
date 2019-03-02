@@ -18,13 +18,17 @@
                 <p><b>Discount:</b> <?php echo $discount_percent; ?>%</p>
                 <p><b>Your Price:</b> $<?php echo $unit_price_f; ?>
                     (You save $<?php echo $discount_amount_f; ?>)</p>
+                <?php if ($has_buy_game) {?>
+                    <p>You've already bought this game.</p>
+                <?php } else {?>
+                    <form id="bug_game"
+                          action="index.php" method="post">
+                        <input type="hidden" name="action" value="bug_game">
+                        <input type="hidden" name="game_id" value="<?=$game_id?>">
+                        <input type="submit" value="Buy It">
+                    </form>
+                <?php }?>
 
-                <form id="bug_game"
-                      action="index.php" method="post">
-                    <input type="hidden" name="action" value="bug_game">
-                    <input type="hidden" name="game_id" value="<?=$game_id?>">
-                    <input type="submit" value="Buy It">
-                </form>
             </div>
         </section>
     </main>

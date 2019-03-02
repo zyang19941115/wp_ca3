@@ -128,7 +128,7 @@ function action_add_game() {
 }
 
 function list_categories() {
-    $categories = get_categories();
+    $categories = get_all_categories();
     include('category_list.php');
 }
 

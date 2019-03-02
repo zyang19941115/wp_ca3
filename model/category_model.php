@@ -1,6 +1,15 @@
 <?php
 $table_name = 'categories';
 
+function get_all_categories() {
+    global $db;
+    global $table_name;
+    $query = "SELECT * FROM $table_name ORDER BY categoryID DESC";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    return $statement;
+}
+
 function get_categories() {
     global $db;
     global $table_name;

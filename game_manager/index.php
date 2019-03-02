@@ -19,22 +19,22 @@ switch ($action) {
         show_edit_form();
         break;
     case 'update_product':
-        update_product();
+        action_update_product();
         break;
     case 'delete_product':
-        delete_product();
+        action_delete_product();
         break;
     case 'show_add_form':
         show_add_form();
         break;
     case 'add_product':
-        add_product();
+        action_add_product();
         break;
     case 'list_categories':
         list_categories();
         break;
     case 'delete_category':
-        delete_category();
+        action_delete_category();
         break;
 }
 
@@ -65,7 +65,7 @@ function show_edit_form() {
     }
 }
 
-function update_product() {
+function action_update_product() {
     $product_id = filter_input(INPUT_POST, 'product_id',
         FILTER_VALIDATE_INT);
     $category_id = filter_input(INPUT_POST, 'category_id',
@@ -88,7 +88,7 @@ function update_product() {
     }
 }
 
-function delete_product() {
+function action_delete_product() {
     $product_id = filter_input(INPUT_POST, 'product_id',
         FILTER_VALIDATE_INT);
     $category_id = filter_input(INPUT_POST, 'category_id',
@@ -108,7 +108,7 @@ function show_add_form() {
     include('product_add.php');
 }
 
-function add_product() {
+function action_add_product() {
     $category_id = filter_input(INPUT_POST, 'category_id',
         FILTER_VALIDATE_INT);
     $code = filter_input(INPUT_POST, 'code');
@@ -129,7 +129,7 @@ function list_categories() {
     include('category_list.php');
 }
 
-function add_category() {
+function action_add_category() {
     $name = filter_input(INPUT_POST, 'name');
 
     // Validate inputs
@@ -143,7 +143,7 @@ function add_category() {
     }
 }
 
-function delete_category() {
+function action_delete_category() {
     $category_id = filter_input(INPUT_POST, 'category_id',
         FILTER_VALIDATE_INT);
     delete_category($category_id);

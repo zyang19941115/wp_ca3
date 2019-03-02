@@ -2,6 +2,7 @@
 require('../model/database.php');
 require('../model/game_model.php');
 require('../model/category_model.php');
+require('../model/order_model.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -17,6 +18,10 @@ switch ($action) {
         break;
     case 'list_games':
         display_game_list();
+        break;
+    case 'bug_game':
+        action_add_order();
+        break;
 }
 
 function display_game() {
@@ -61,6 +66,17 @@ function display_game_list() {
     $category_name = get_category_name($category_id);
     $games = get_games_by_category($category_id);
     include('game_list.php');
+}
+
+function action_add_order() {
+    $game_id = filter_input(INPUT_POST, 'game_id', FILTER_VALIDATE_INT);
+    if ($game_id == NULL || $game_id == FALSE) {
+        $error = 'Missing or incorrect game id.';
+        include('../errors/error.php');
+    } else {
+        add_order($game_id);
+        header('Location: .?action=list_games');
+    }
 }
 ?>
 

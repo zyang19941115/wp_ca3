@@ -36,6 +36,9 @@ switch ($action) {
     case 'delete_category':
         action_delete_category();
         break;
+    case 'add_category':
+        action_add_category();
+        break;
 }
 
 function display_game_list() {

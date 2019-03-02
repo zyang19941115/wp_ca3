@@ -18,15 +18,6 @@
                 <p><b>Discount:</b> <?php echo $discount_percent; ?>%</p>
                 <p><b>Your Price:</b> $<?php echo $unit_price_f; ?>
                     (You save $<?php echo $discount_amount_f; ?>)</p>
-<!--                <form action="--><?php //echo '../cart' ?><!--" method="post">-->
-<!--                    <input type="hidden" name="action" value="add">-->
-<!--                    <input type="hidden" name="game_id"-->
-<!--                           value="--><?php //echo $game_id; ?><!--">-->
-<!--                    <b>Quantity:</b>-->
-<!--                    <input id="quantity" type="text" name="quantity" value="1" size="2">-->
-<!--                    <br><br>-->
-<!--                    <input type="submit" value="Buy It">-->
-<!--                </form>-->
 
                 <form id="bug_game"
                       action="index.php" method="post">

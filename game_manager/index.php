@@ -50,7 +50,7 @@ function display_product_list() {
     $products = get_games_by_category($category_id);
 
     // Display the product list
-    include('product_list.php');
+    include('game_list.php');
 }
 
 function show_edit_form() {
@@ -61,7 +61,7 @@ function show_edit_form() {
         include('../errors/error.php');
     } else {
         $game = get_game($product_id);
-        include('product_edit.php');
+        include('game_edit.php');
     }
 }
 
@@ -105,7 +105,7 @@ function action_delete_product() {
 
 function show_add_form() {
     $categories = get_categories();
-    include('product_add.php');
+    include('game_add.php');
 }
 
 function action_add_product() {

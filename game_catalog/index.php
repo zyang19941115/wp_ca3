@@ -48,7 +48,7 @@ function display_product() {
     $image_filename = '../images/' . $code . '.png';
     $image_alt = 'Image: ' . $code . '.png';
 
-    include('product_view.php');
+    include('game_view.php');
 }
 
 function display_product_list() {
@@ -60,7 +60,7 @@ function display_product_list() {
     $categories = get_categories();
     $category_name = get_category_name($category_id);
     $products = get_games_by_category($category_id);
-    include('product_list.php');
+    include('game_list.php');
 }
 ?>
 

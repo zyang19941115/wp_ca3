@@ -21,3 +21,8 @@ support edit or delete any game, or add game
 > support add game
 * game edit page
 > display specific game detail and support edit game
+
+# Additional
+## soft delete
+Deletion does not really delete data from the database. 
+It just set `is_deleted` column as true which is invisible for user.

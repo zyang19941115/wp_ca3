@@ -8,11 +8,11 @@
         <section>
             <h1><?php echo $category_name; ?></h1>
             <ul class="nav">
-                <!-- display links for products in selected category -->
-                <?php foreach ($products as $product) : ?>
+                <!-- display links for games in selected category -->
+                <?php foreach ($games as $game) : ?>
                     <li>
-                        <a href="?action=view_product&product_id=<?=$product['gameID']; ?>">
-                            <?php echo $product['gameName']; ?>
+                        <a href="?action=view_game&game_id=<?=$game['gameID']; ?>">
+                            <?php echo $game['gameName']; ?>
                         </a>
                     </li>
                 <?php endforeach; ?>

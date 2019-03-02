@@ -1,8 +1,8 @@
 <?php include '../view/header.php'; ?>
     <main>
-        <h1>Add Product</h1>
-        <form action="index.php" method="post" id="add_product_form">
-            <input type="hidden" name="action" value="add_product">
+        <h1>Add game</h1>
+        <form action="index.php" method="post" id="add_game_form">
+            <input type="hidden" name="action" value="add_game">
 
             <label>Category:</label>
             <select name="category_id">
@@ -27,11 +27,11 @@
             <br>
 
             <label>&nbsp;</label>
-            <input type="submit" value="Add Product">
+            <input type="submit" value="Add game">
             <br>
         </form>
         <p class="last_paragraph">
-            <a href="index.php?action=list_products">View Product List</a>
+            <a href="index.php?action=list_games">View game List</a>
         </p>
 
     </main>

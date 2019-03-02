@@ -7,28 +7,28 @@ $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {
-        $action = 'list_products';
+        $action = 'list_games';
     }
 }
 
 switch ($action) {
-    case 'list_products':
-        display_product_list();
+    case 'list_games':
+        display_game_list();
         break;
     case 'show_edit_form':
         show_edit_form();
         break;
-    case 'update_product':
-        action_update_product();
+    case 'update_game':
+        action_update_game();
         break;
-    case 'delete_product':
-        action_delete_product();
+    case 'delete_game':
+        action_delete_game();
         break;
     case 'show_add_form':
         show_add_form();
         break;
-    case 'add_product':
-        action_add_product();
+    case 'add_game':
+        action_add_game();
         break;
     case 'list_categories':
         list_categories();
@@ -38,35 +38,35 @@ switch ($action) {
         break;
 }
 
-function display_product_list() {
+function display_game_list() {
     $category_id = filter_input(INPUT_GET, 'category_id', FILTER_VALIDATE_INT);
     if ($category_id == NULL || $category_id == FALSE) {
         $category_id = 1;
     }
 
-    // Get product and category data
+    // Get game and category data
     $category_name = get_category_name($category_id);
     $categories = get_categories();
-    $products = get_games_by_category($category_id);
+    $games = get_games_by_category($category_id);
 
-    // Display the product list
+    // Display the game list
     include('game_list.php');
 }
 
 function show_edit_form() {
-    $product_id = filter_input(INPUT_POST, 'product_id',
+    $game_id = filter_input(INPUT_POST, 'game_id',
         FILTER_VALIDATE_INT);
-    if ($product_id == NULL || $product_id == FALSE) {
-        $error = "Missing or incorrect product id.";
+    if ($game_id == NULL || $game_id == FALSE) {
+        $error = "Missing or incorrect game id.";
         include('../errors/error.php');
     } else {
-        $game = get_game($product_id);
+        $game = get_game($game_id);
         include('game_edit.php');
     }
 }
 
-function action_update_product() {
-    $product_id = filter_input(INPUT_POST, 'product_id',
+function action_update_game() {
+    $game_id = filter_input(INPUT_POST, 'game_id',
         FILTER_VALIDATE_INT);
     $category_id = filter_input(INPUT_POST, 'category_id',
         FILTER_VALIDATE_INT);
@@ -75,30 +75,30 @@ function action_update_product() {
     $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
 
     // Validate the inputs
-    if ($product_id == NULL || $product_id == FALSE || $category_id == NULL ||
+    if ($game_id == NULL || $game_id == FALSE || $category_id == NULL ||
         $category_id == FALSE || $code == NULL || $name == NULL ||
         $price == NULL || $price == FALSE) {
-        $error = "Invalid product data. Check all fields and try again.";
+        $error = "Invalid game data. Check all fields and try again.";
         include('../errors/error.php');
     } else {
-        update_game($product_id, $category_id, $code, $name, $price);
+        update_game($game_id, $category_id, $code, $name, $price);
 
-        // Display the Product List page for the current category
+        // Display the game List page for the current category
         header("Location: .?category_id=$category_id");
     }
 }
 
-function action_delete_product() {
-    $product_id = filter_input(INPUT_POST, 'product_id',
+function action_delete_game() {
+    $game_id = filter_input(INPUT_POST, 'game_id',
         FILTER_VALIDATE_INT);
     $category_id = filter_input(INPUT_POST, 'category_id',
         FILTER_VALIDATE_INT);
     if ($category_id == NULL || $category_id == FALSE ||
-        $product_id == NULL || $product_id == FALSE) {
-        $error = "Missing or incorrect product id or category id.";
+        $game_id == NULL || $game_id == FALSE) {
+        $error = "Missing or incorrect game id or category id.";
         include('../errors/error.php');
     } else {
-        delete_game($product_id);
+        delete_game($game_id);
         header("Location: .?category_id=$category_id");
     }
 }
@@ -108,7 +108,7 @@ function show_add_form() {
     include('game_add.php');
 }
 
-function action_add_product() {
+function action_add_game() {
     $category_id = filter_input(INPUT_POST, 'category_id',
         FILTER_VALIDATE_INT);
     $code = filter_input(INPUT_POST, 'code');

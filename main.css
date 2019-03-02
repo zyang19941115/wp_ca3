@@ -100,19 +100,19 @@ form {
     padding-left: 1em;
     padding-bottom: 2em;
 }
-/* Additional styles for the Product Manager application */
-#add_product_form {
+/* Additional styles for the game Manager application */
+#add_game_form {
     margin: .5em 0;
 }
-#add_product_form label {
+#add_game_form label {
     width: 6em;
     padding-right: 1em;
     padding-bottom: .5em;
     float: left;
 }
-#add_product_form input {
+#add_game_form input {
     float: left;
 }
-#add_product_form input[text] {
+#add_game_form input[text] {
     width: 15em;
 }

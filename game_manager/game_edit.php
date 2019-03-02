@@ -1,11 +1,11 @@
 <?php include '../view/header.php'; ?>
     <main>
-        <h1>Edit Product</h1>
-        <form action="index.php" method="post" id="add_product_form">
+        <h1>Edit game</h1>
+        <form action="index.php" method="post" id="add_game_form">
 
-            <input type="hidden" name="action" value="update_product">
+            <input type="hidden" name="action" value="update_game">
 
-            <input type="hidden" name="product_id"
+            <input type="hidden" name="game_id"
                    value="<?php echo $game['gameID']; ?>">
 
             <label>Category ID:</label>
@@ -32,7 +32,7 @@
             <input type="submit" value="Save Changes">
             <br>
         </form>
-        <p><a href="index.php?action=list_products">View Product List</a></p>
+        <p><a href="index.php?action=list_games">View game List</a></p>
 
     </main>
 <?php include '../view/footer.php'; ?>

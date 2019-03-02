@@ -20,8 +20,8 @@
                     (You save $<?php echo $discount_amount_f; ?>)</p>
                 <form action="<?php echo '../cart' ?>" method="post">
                     <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="product_id"
-                           value="<?php echo $product_id; ?>">
+                    <input type="hidden" name="game_id"
+                           value="<?php echo $game_id; ?>">
                     <b>Quantity:</b>
                     <input id="quantity" type="text" name="quantity" value="1" size="2">
                     <br><br>

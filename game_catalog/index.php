@@ -45,6 +45,7 @@ function display_game() {
         $unit_price = $list_price - $discount_amount;
 
     }
+    $has_buy_game = get_order_number_by_game_id($game_id);
     // Format the calculations
     $discount_amount_f = number_format($discount_amount, 2);
     $unit_price_f = number_format($unit_price, 2);
@@ -60,7 +61,8 @@ function display_game_list() {
     $category_id = filter_input(INPUT_GET, 'category_id',
         FILTER_VALIDATE_INT);
     if ($category_id == NULL || $category_id == FALSE) {
-        $category_id = 1;
+        $latest_category = get_latest_category();
+        $category_id = $latest_category["categoryID"];
     }
     $categories = get_categories();
     $category_name = get_category_name($category_id);
@@ -75,7 +77,7 @@ function action_add_order() {
         include('../errors/error.php');
     } else {
         add_order($game_id);
-        header('Location: .?action=list_games');
+        header('Location: .?action=view_game&game_id=' . $game_id);
     }
 }
 ?>

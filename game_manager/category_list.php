@@ -5,19 +5,23 @@
         <table>
             <tr>
                 <th>Name</th>
-                <th>&nbsp;</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
             <?php foreach ($categories as $category) : ?>
                 <tr>
                     <td><?php echo $category['categoryName']; ?></td>
+                    <td><?php $status = $category['is_deleted'] ? "Is Deleted" : "In Use"; echo $status; ?></td>
                     <td>
-                        <form id="delete_game_form"
-                              action="index.php" method="post">
-                            <input type="hidden" name="action" value="delete_category">
-                            <input type="hidden" name="category_id"
-                                   value="<?php echo $category['categoryID']; ?>">
-                            <input type="submit" value="Delete">
-                        </form>
+                        <?php if (!$category['is_deleted']) {?>
+                            <form id="delete_game_form"
+                                  action="index.php" method="post">
+                                <input type="hidden" name="action" value="delete_category">
+                                <input type="hidden" name="category_id"
+                                       value="<?php echo $category['categoryID']; ?>">
+                                <input type="submit" value="Delete">
+                            </form>
+                        <?php }?>
                     </td>
                 </tr>
             <?php endforeach; ?>

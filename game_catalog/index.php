@@ -2,37 +2,42 @@
 require('../model/database.php');
 require('../model/game_model.php');
 require('../model/category_model.php');
+require('../model/order_model.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {
-        $action = 'list_products';
+        $action = 'list_games';
     }
 }
 
 switch ($action) {
-    case 'view_product':
-        display_product();
+    case 'view_game':
+        display_game();
         break;
-    case 'list_products':
-        display_product_list();
+    case 'list_games':
+        display_game_list();
+        break;
+    case 'bug_game':
+        action_add_order();
+        break;
 }
 
-function display_product() {
-    $product_id = filter_input(INPUT_GET, 'product_id',
+function display_game() {
+    $game_id = filter_input(INPUT_GET, 'game_id',
         FILTER_VALIDATE_INT);
-    if ($product_id == NULL || $product_id == FALSE) {
-        $error = 'Missing or incorrect product id.';
+    if ($game_id == NULL || $game_id == FALSE) {
+        $error = 'Missing or incorrect game id.';
         include('../errors/error.php');
     } else {
         $categories = get_categories();
-        $product = get_game($product_id);
+        $game = get_game($game_id);
 
-        // Get product data
-        $code = $product['gameCode'];
-        $name = $product['gameName'];
-        $list_price = $product['listPrice'];
+        // Get game data
+        $code = $game['gameCode'];
+        $name = $game['gameName'];
+        $list_price = $game['listPrice'];
 
         // Calculate discounts 30% off for all web orders
         $discount_percent = 30;
@@ -48,10 +53,10 @@ function display_product() {
     $image_filename = '../images/' . $code . '.png';
     $image_alt = 'Image: ' . $code . '.png';
 
-    include('product_view.php');
+    include('game_view.php');
 }
 
-function display_product_list() {
+function display_game_list() {
     $category_id = filter_input(INPUT_GET, 'category_id',
         FILTER_VALIDATE_INT);
     if ($category_id == NULL || $category_id == FALSE) {
@@ -59,8 +64,19 @@ function display_product_list() {
     }
     $categories = get_categories();
     $category_name = get_category_name($category_id);
-    $products = get_games_by_category($category_id);
-    include('product_list.php');
+    $games = get_games_by_category($category_id);
+    include('game_list.php');
+}
+
+function action_add_order() {
+    $game_id = filter_input(INPUT_POST, 'game_id', FILTER_VALIDATE_INT);
+    if ($game_id == NULL || $game_id == FALSE) {
+        $error = 'Missing or incorrect game id.';
+        include('../errors/error.php');
+    } else {
+        add_order($game_id);
+        header('Location: .?action=list_games');
+    }
 }
 ?>
 
